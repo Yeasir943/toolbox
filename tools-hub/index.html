@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ফ্রি অনলাইন টুলস - QR কোড, PDF, ইমেজ, ক্যালকুলেটর | টুলবক্স</title>
+<meta name="description" content="QR কোড জেনারেটর, PDF ও ইমেজ টুল, EMI ও CGPA ক্যালকুলেটর, বাংলা টাইপিং টেস্টসহ দরকারি ফ্রি অনলাইন টুলস। লগইন ছাড়াই ব্যবহার করুন।">
+<meta name="theme-color" content="#2547d0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f8;--panel:#fff;--ink:#16213a;--muted:#5b6578;--line:#d3dbe8;--accent:#2547d0;--accent-soft:#e3e9fc;--hh:60px}
+[data-theme=dark]{--bg:#0f1524;--panel:#171f33;--ink:#e8ecf6;--muted:#9aa5bd;--line:#2a3550;--accent:#7b97ff;--accent-soft:#222c4d}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(var(--hh) + 12px)}
+body{margin:0;font-family:"Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #9db0f5;outline-offset:2px}
+.hdr{position:sticky;top:0;z-index:30;height:var(--hh);background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 16px}
+.burger{display:none;background:none;border:0;font-size:1.4rem;padding:4px 8px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.2rem;color:var(--ink);text-decoration:none}
+.logo i{font-style:normal;display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:var(--accent);color:#fff}
+.sbox{flex:1;max-width:520px;margin:0 auto;position:relative}
+.sbox input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:8px 16px 8px 38px}
+.sbox:before{content:"🔍";position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:.9rem}
+.ib{background:none;border:1px solid var(--line);border-radius:8px;height:38px;min-width:38px;padding:0 10px}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:8px;height:38px;padding:0 16px;font-weight:600}
+[data-theme=dark] .btn{color:#0f1524}
+.acct{position:relative}
+.menu{position:absolute;right:0;top:46px;min-width:210px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:none}
+.menu.open{display:block}.menu p{margin:0 0 8px;font-size:.88rem;color:var(--muted);word-break:break-all}
+.layout{display:grid;grid-template-columns:240px 1fr;max-width:1240px;margin:0 auto}
+.side{position:sticky;top:var(--hh);height:calc(100vh - var(--hh));overflow:auto;padding:20px 14px;border-right:1px solid var(--line)}
+.side h3{font-size:.85rem;color:var(--muted);margin:0 8px 8px;font-weight:600}
+.nav{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:9px 10px;margin-bottom:2px}
+.nav:hover{background:var(--accent-soft)}
+.nav[aria-current=true]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.nav em{margin-left:auto;font-style:normal;font-size:.8rem;color:var(--muted)}
+main{padding:28px 24px 10px;min-width:0}
+h1{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.2;margin:0 0 6px;max-width:20ch}
+.lead{margin:0 0 8px;color:var(--muted);max-width:56ch}
+.sec{margin-top:28px}.sec h2{font-size:1.1rem;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;transition:border-color .15s,transform .15s}
+.card.live:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card a{color:inherit;text-decoration:none}.card a:after{content:"";position:absolute;inset:0}
+.ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.5rem;background:hsl(var(--h) 80% 92%);margin-bottom:12px}
+[data-theme=dark] .ico{background:hsl(var(--h) 35% 24%)}
+.card b{display:block;font-weight:600}.card .d{display:block;color:var(--muted);font-size:.9rem;line-height:1.45;margin-top:2px}
+.tag{display:inline-block;margin-top:10px;font-size:.78rem;padding:1px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+.card.soon{opacity:.72}
+.fav{position:absolute;top:10px;right:10px;z-index:2;background:none;border:0;font-size:1.15rem;line-height:1;padding:4px;color:var(--muted)}
+.fav[aria-pressed=true]{color:#e8a200}
+.none{display:none;color:var(--muted);padding:30px 0}
+.ftr{margin-top:56px;background:var(--panel);border-top:1px solid var(--line)}
+.fin{max-width:1240px;margin:0 auto;padding:40px 24px 20px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:28px}
+.fin h4{margin:0 0 10px;font-size:.95rem}.fin a{display:block;color:var(--muted);text-decoration:none;padding:2px 0;font-size:.93rem}
+.fin a:hover{color:var(--accent)}.fin p{color:var(--muted);font-size:.93rem;max-width:34ch;margin:8px 0 0}
+.fbot{max-width:1240px;margin:0 auto;padding:16px 24px 28px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--ink);padding:24px;width:min(380px,92vw)}
+dialog::backdrop{background:rgba(10,15,30,.55)}
+dialog h2{margin:0 0 14px;font-size:1.25rem}dialog label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 4px}
+dialog input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+dialog .btn,dialog .ib{width:100%;margin-top:14px}.err{color:#c62828;font-size:.88rem;min-height:1.3em;margin-top:8px}
+.lnk{background:none;border:0;color:var(--accent);padding:0;text-decoration:underline}
+.ov{display:none}
+@media(max-width:900px){.fin{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){
+ .burger{display:block}.layout{grid-template-columns:1fr}
+ .side{position:fixed;left:0;top:var(--hh);width:264px;z-index:25;background:var(--panel);transform:translateX(-100%);transition:transform .2s}
+ .side.open{transform:none}.ov.open{display:block;position:fixed;inset:var(--hh) 0 0;background:rgba(10,15,30,.45);z-index:20}
+ .logo span,.hide-m{display:none}main{padding:22px 16px 6px}
+}
+@media(max-width:480px){.fin{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <button class="burger" id="burger" aria-label="মেনু খুলুন">☰</button>
+  <a class="logo" href="/"><i>⚒</i><span>টুলবক্স</span></a>
+  <div class="sbox"><input id="q" type="search" placeholder="টুল খুঁজুন (Ctrl+K)" aria-label="টুল খুঁজুন"></div>
+  <button class="ib" id="theme" aria-label="ডার্ক মোড">🌙</button>
+  <div class="acct">
+    <button class="btn" id="login">লগইন</button>
+    <button class="ib" id="me" hidden aria-haspopup="true"></button>
+    <div class="menu" id="menu"><p id="mail"></p><button class="ib" id="logout" style="width:100%">লগ আউট</button></div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="side" id="side"><h3>ক্যাটাগরি</h3><nav id="nav"></nav></aside>
+  <div class="ov" id="ov"></div>
+  <div style="min-width:0">
+    <main>
+      <h1>দরকারি টুলস, এক জায়গায়</h1>
+      <p class="lead">ফ্রি ও লগইন ছাড়া ব্যবহারযোগ্য। বেশিরভাগ কাজ আপনার ব্রাউজারেই হয়। অ্যাকাউন্ট খুললে প্রিয় টুলস সব ডিভাইসে পাবেন।</p>
+      <div id="sections"></div>
+      <p class="none" id="none">এই নামে কোনো টুল পাওয়া যায়নি। অন্য শব্দ দিয়ে খুঁজুন।</p>
+    </main>
+    <footer class="ftr">
+      <div class="fin">
+        <div><a class="logo" href="/"><i>⚒</i><span>টুলবক্স</span></a><p>দৈনন্দিন কাজের জন্য ফ্রি, দ্রুত ও নিরাপদ অনলাইন টুলস। আপনার ফাইল আপনার ডিভাইসেই থাকে।</p></div>
+        <div><h4>জনপ্রিয় টুলস</h4><a href="qr-code-generator/">QR কোড জেনারেটর</a><a href="#">PDF মার্জ</a><a href="#">ইমেজ কম্প্রেসার</a><a href="#">EMI ক্যালকুলেটর</a></div>
+        <div><h4>কোম্পানি</h4><a href="/about/">আমাদের সম্পর্কে</a><a href="/contact/">যোগাযোগ</a><a href="/suggest/">টুল প্রস্তাব করুন</a></div>
+        <div><h4>আইনি</h4><a href="/privacy/">প্রাইভেসি পলিসি</a><a href="/terms/">শর্তাবলি</a></div>
+      </div>
+      <div class="fbot"><span>© <span id="yr"></span> টুলবক্স। সর্বস্বত্ব সংরক্ষিত।</span><span>ভালোবাসা দিয়ে বাংলাদেশে তৈরি</span></div>
+    </footer>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <h2 id="dt">লগইন করুন</h2>
+  <button class="ib" id="gbtn" type="button">Google দিয়ে চালিয়ে যান</button>
+  <label for="em">ইমেইল</label><input id="em" type="email" autocomplete="email">
+  <label for="pw">পাসওয়ার্ড</label><input id="pw" type="password" autocomplete="current-password">
+  <div class="err" id="err" role="alert"></div>
+  <button class="btn" id="go" type="button">লগইন</button>
+  <p style="text-align:center;font-size:.9rem;margin:12px 0 0"><span id="sw1">অ্যাকাউন্ট নেই?</span> <button class="lnk" id="sw" type="button">নতুন অ্যাকাউন্ট খুলুন</button></p>
+  <p style="text-align:center;margin:8px 0 0"><button class="lnk" id="cl" type="button">বন্ধ করুন</button></p>
+</dialog>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+/* ===== ১. Firebase কনফিগ: Firebase Console > Project settings > Your apps (Web) থেকে নিজের মান বসান ===== */
+var CFG={apiKey:"AIzaSyBXIhMLVzIoOPM_h6-9bS7O0h8gPYwkdIQ",authDomain:"tools-app-d9995.firebaseapp.com",projectId:"tools-app-d9995",appId:"1:766288363153:web:2336d43b14771607a54930"};
+var fbOn=CFG.apiKey.indexOf("YOUR_")!==0&&window.firebase, auth,db;
+if(fbOn){firebase.initializeApp(CFG);auth=firebase.auth();db=firebase.firestore();}
+
+/* ===== ২. টুলের তালিকা: নতুন টুল এখানে যোগ করুন, বানানো শেষ হলে live:true দিন ===== */
+var CATS={"ডকুমেন্ট ও ইমেজ":{i:"🖼️",h:215},"ক্যালকুলেটর":{i:"🧮",h:150},"টেক্সট ও বাংলা":{i:"✍️",h:30},"ক্যারিয়ার ও AI":{i:"✨",h:275},"ডেভেলপার":{i:"💻",h:190}};
+var T=[
+{n:"QR কোড জেনারেটর",d:"লিংক বা টেক্সট থেকে QR, PNG ও SVG ডাউনলোড",c:"ডকুমেন্ট ও ইমেজ",u:"qr-code-generator/",i:"▦",live:1},
+{n:"PDF মার্জ",d:"একাধিক PDF জোড়া লাগান এক ফাইলে",c:"ডকুমেন্ট ও ইমেজ",u:"pdf-merge/",i:"📑"},
+{n:"PDF কম্প্রেস",d:"PDF ফাইলের সাইজ ছোট করুন",c:"ডকুমেন্ট ও ইমেজ",u:"pdf-compress/",i:"🗜️"},
+{n:"ইমেজ কম্প্রেসার",d:"ছবির মান ঠিক রেখে সাইজ কমান",c:"ডকুমেন্ট ও ইমেজ",u:"image-compressor/",i:"📷"},
+{n:"ইমেজ কনভার্টার",d:"JPG, PNG, WebP রূপান্তর ও মাপ বদল",c:"ডকুমেন্ট ও ইমেজ",u:"image-converter/",i:"🔄"},
+{n:"EMI ক্যালকুলেটর",d:"লোনের মাসিক কিস্তি ও মোট সুদ",c:"ক্যালকুলেটর",u:"emi-calculator/",i:"🏦"},
+{n:"CGPA ক্যালকুলেটর",d:"সেমিস্টারের GPA থেকে CGPA",c:"ক্যালকুলেটর",u:"cgpa-calculator/",i:"🎓"},
+{n:"বয়স ক্যালকুলেটর",d:"জন্মতারিখ থেকে বছর, মাস ও দিনে বয়স",c:"ক্যালকুলেটর",u:"age-calculator/",i:"🎂"},
+{n:"BMI ক্যালকুলেটর",d:"উচ্চতা ও ওজন থেকে BMI দেখুন",c:"ক্যালকুলেটর",u:"bmi-calculator/",i:"⚖️"},
+{n:"জাকাত ক্যালকুলেটর",d:"সম্পদ অনুযায়ী জাকাতের পরিমাণ",c:"ক্যালকুলেটর",u:"zakat-calculator/",i:"🌙"},
+{n:"ওয়ার্ড কাউন্টার",d:"শব্দ, অক্ষর ও বাক্য গুনুন",c:"টেক্সট ও বাংলা",u:"word-counter/",i:"🔤"},
+{n:"বিজয় থেকে ইউনিকোড",d:"বিজয় বাংলা লেখা ইউনিকোডে রূপান্তর",c:"টেক্সট ও বাংলা",u:"bijoy-to-unicode/",i:"অ"},
+{n:"বাংলা টাইপিং টেস্ট",d:"টাইপিং স্পিড ও নির্ভুলতা মাপুন",c:"টেক্সট ও বাংলা",u:"bangla-typing-test/",i:"⌨️"},
+{n:"রিজিউমে বিল্ডার",d:"সহজে CV বানিয়ে PDF করুন",c:"ক্যারিয়ার ও AI",u:"resume-builder/",i:"📄"},
+{n:"JSON ফরম্যাটার",d:"JSON সাজান, যাচাই করুন ও ছোট করুন",c:"ডেভেলপার",u:"json-formatter/",i:"{ }"},
+{n:"Base64 এনকোডার",d:"টেক্সট Base64 এ এনকোড ও ডিকোড",c:"ডেভেলপার",u:"base64/",i:"🔐"}
+];
+
+var $=function(id){return document.getElementById(id)};
+var active="সব",term="",user=null,favs=[];
+try{favs=JSON.parse(localStorage.getItem("fav")||"[]")}catch(e){}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+function nav(){
+  var rows=[["সব","🏠",T.length],["প্রিয়","⭐",favs.length]];
+  Object.keys(CATS).forEach(function(c){rows.push([c,CATS[c].i,T.filter(function(t){return t.c===c}).length])});
+  $("nav").innerHTML=rows.map(function(r){return'<button class="nav" data-c="'+esc(r[0])+'"'+(r[0]===active?' aria-current="true"':'')+'><span>'+r[1]+'</span>'+esc(r[0])+'<em>'+r[2]+'</em></button>'}).join("");
+}
+function card(t){
+  var h=CATS[t.c].h,star='<button class="fav" data-n="'+esc(t.n)+'" aria-pressed="'+(favs.indexOf(t.n)>-1)+'" aria-label="প্রিয় তালিকায় রাখুন">'+(favs.indexOf(t.n)>-1?"★":"☆")+'</button>';
+  var body='<div class="ico" style="--h:'+h+'">'+t.i+'</div><b>'+esc(t.n)+'</b><span class="d">'+esc(t.d)+'</span><span class="tag'+(t.live?' on':'')+'">'+(t.live?'চালু':'শীঘ্রই আসছে')+'</span>';
+  return'<div class="card '+(t.live?'live':'soon')+'">'+star+(t.live?'<a href="'+esc(t.u)+'">'+body+'</a>':body)+'</div>';
+}
+function render(){
+  var list=T.filter(function(t){
+    var okC=active==="সব"||(active==="প্রিয়"?favs.indexOf(t.n)>-1:t.c===active);
+    return okC&&(!term||(t.n+" "+t.d).toLowerCase().indexOf(term)>-1);
+  }),html="";
+  if(active==="সব"&&!term){
+    var f=T.filter(function(t){return favs.indexOf(t.n)>-1});
+    if(f.length)html+='<section class="sec"><h2>⭐ প্রিয় টুলস</h2><div class="grid">'+f.map(card).join("")+'</div></section>';
+    Object.keys(CATS).forEach(function(c){
+      var g=list.filter(function(t){return t.c===c});
+      if(g.length)html+='<section class="sec"><h2>'+CATS[c].i+' '+esc(c)+'</h2><div class="grid">'+g.map(card).join("")+'</div></section>';
+    });
+  }else if(list.length){
+    html='<section class="sec"><h2>'+esc(term?"সার্চ ফলাফল":active)+'</h2><div class="grid">'+list.map(card).join("")+'</div></section>';
+  }
+  $("sections").innerHTML=html;$("none").style.display=list.length?"none":"block";
+  if(active==="প্রিয়"&&!list.length){$("none").textContent="কোনো প্রিয় টুল নেই। কার্ডের ☆ চিহ্নে চাপ দিয়ে যোগ করুন.";}
+  else $("none").textContent="এই নামে কোনো টুল পাওয়া যায়নি। অন্য শব্দ দিয়ে খুঁজুন।";
+}
+function saveFavs(){
+  localStorage.setItem("fav",JSON.stringify(favs));
+  if(user&&db)db.collection("users").doc(user.uid).set({favorites:favs},{merge:true}).catch(function(){});
+}
+
+$("nav").onclick=function(e){var b=e.target.closest(".nav");if(!b)return;active=b.dataset.c;term="";$("q").value="";nav();render();side(false)};
+$("sections").onclick=function(e){
+  var b=e.target.closest(".fav");if(!b)return;
+  var n=b.dataset.n,i=favs.indexOf(n);i>-1?favs.splice(i,1):favs.push(n);saveFavs();nav();render();
+};
+$("q").addEventListener("input",function(){term=this.value.trim().toLowerCase();if(term)active="সব";nav();render()});
+document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();$("q").focus()}});
+function side(o){$("side").classList.toggle("open",o);$("ov").classList.toggle("open",o)}
+$("burger").onclick=function(){side(!$("side").classList.contains("open"))};$("ov").onclick=function(){side(false)};
+
+/* ডার্ক মোড */
+function theme(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"☀️":"🌙";try{localStorage.setItem("theme",t)}catch(e){}}
+var st=null;try{st=localStorage.getItem("theme")}catch(e){}
+theme(st||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
+$("theme").onclick=function(){theme(document.documentElement.dataset.theme==="dark"?"light":"dark")};
+
+/* লগইন / অ্যাকাউন্ট */
+var mode="login",dlg=$("dlg");
+function setMode(m){mode=m;var l=m==="login";$("dt").textContent=l?"লগইন করুন":"নতুন অ্যাকাউন্ট খুলুন";$("go").textContent=l?"লগইন":"অ্যাকাউন্ট খুলুন";
+  $("sw1").textContent=l?"অ্যাকাউন্ট নেই?":"আগে থেকেই অ্যাকাউন্ট আছে?";$("sw").textContent=l?"নতুন অ্যাকাউন্ট খুলুন":"লগইন করুন";$("err").textContent="";
+  $("pw").autocomplete=l?"current-password":"new-password"}
+$("login").onclick=function(){setMode("login");dlg.showModal()};
+$("sw").onclick=function(){setMode(mode==="login"?"signup":"login")};
+$("cl").onclick=function(){dlg.close()};
+function fail(e){
+  var m={"auth/invalid-credential":"ইমেইল বা পাসওয়ার্ড ভুল।","auth/email-already-in-use":"এই ইমেইলে অ্যাকাউন্ট আগে থেকেই আছে।","auth/weak-password":"পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের দিন।","auth/invalid-email":"ইমেইলটি সঠিক নয়।","auth/popup-closed-by-user":""};
+  $("err").textContent=(e&&m[e.code]!==undefined)?m[e.code]:"কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+}
+function needFb(){if(fbOn)return false;$("err").textContent="Firebase এখনো সেট করা হয়নি। ফাইলের CFG অংশে আপনার কনফিগ বসান।";return true}
+$("go").onclick=function(){
+  if(needFb())return;var e=$("em").value.trim(),p=$("pw").value;
+  if(!e||!p){$("err").textContent="ইমেইল ও পাসওয়ার্ড দিন।";return}
+  (mode==="login"?auth.signInWithEmailAndPassword(e,p):auth.createUserWithEmailAndPassword(e,p)).then(function(){dlg.close();$("pw").value=""}).catch(fail);
+};
+$("gbtn").onclick=function(){if(needFb())return;auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function(){dlg.close()}).catch(fail)};
+$("me").onclick=function(e){e.stopPropagation();$("menu").classList.toggle("open")};
+document.addEventListener("click",function(){$("menu").classList.remove("open")});
+$("logout").onclick=function(){auth&&auth.signOut()};
+if(fbOn)auth.onAuthStateChanged(function(u){
+  user=u;$("login").hidden=!!u;$("me").hidden=!u;
+  if(u){
+    $("me").textContent=(u.displayName||u.email||"U").charAt(0).toUpperCase();$("mail").textContent=u.email||u.displayName;
+    db.collection("users").doc(u.uid).get().then(function(s){
+      var r=(s.exists&&s.data().favorites)||[];r.forEach(function(n){if(favs.indexOf(n)<0)favs.push(n)});
+      saveFavs();nav();render();
+    }).catch(function(){});
+  }
+});
+
+$("yr").textContent=new Date().getFullYear();nav();render();
+})();
+</script>
+</body>
+</html>

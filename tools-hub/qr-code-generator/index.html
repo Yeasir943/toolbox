@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR কোড জেনারেটর - ফ্রি, লগইন ছাড়া | QR Code Generator</title>
+<meta name="description" content="লিংক, টেক্সট, ফোন নম্বর বা Wi-Fi এর QR কোড বানান এক ক্লিকে। PNG ও SVG ডাউনলোড করুন। সম্পূর্ণ ফ্রি, লগইন লাগে না।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e9eef5; --panel:#ffffff; --ink:#16213a; --muted:#5b6578;
+    --line:#cfd8e6; --accent:#2547d0; --accent-ink:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.6;
+  }
+  .wrap{max-width:1020px;margin:0 auto;padding:32px 20px 56px}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.2;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+  .sub{margin:0 0 28px;color:var(--muted);max-width:56ch}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+  label{display:block;font-weight:600;margin:0 0 6px}
+  .field{margin-bottom:18px}
+  textarea,select,input[type=number]{
+    width:100%;font:inherit;color:var(--ink);background:#fff;
+    border:1px solid var(--line);border-radius:6px;padding:10px 12px;
+  }
+  textarea{min-height:120px;resize:vertical}
+  textarea:focus,select:focus,input:focus,button:focus-visible{outline:3px solid #9db0f5;outline-offset:1px;border-color:var(--accent)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .colors{display:flex;gap:14px}
+  .colors > div{flex:1}
+  input[type=color]{width:100%;height:42px;border:1px solid var(--line);border-radius:6px;background:#fff;padding:3px;cursor:pointer}
+  .hint{font-size:.85rem;color:var(--muted);margin:6px 0 0}
+  .preview{position:sticky;top:20px;text-align:center}
+  .qrbox{
+    background:#fff;border:1px solid var(--line);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    aspect-ratio:1/1;width:100%;overflow:hidden;
+  }
+  .qrbox canvas{width:100%;height:100%;image-rendering:pixelated;display:block}
+  .empty{color:var(--muted);padding:24px;font-size:.95rem}
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  button{
+    font:inherit;font-weight:600;cursor:pointer;border-radius:6px;padding:11px 14px;
+    border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);
+  }
+  button.alt{background:#fff;color:var(--accent)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  .status{min-height:1.4em;font-size:.88rem;color:var(--muted);margin-top:10px}
+  .faq{margin-top:36px;max-width:70ch}
+  .faq h2{font-size:1.25rem;margin:0 0 10px}
+  .faq h3{font-size:1rem;margin:16px 0 2px}
+  .faq p{margin:0;color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>QR কোড জেনারেটর</h1>
+  <p class="sub">লিংক বা যেকোনো লেখা লিখুন, QR কোড সাথে সাথে তৈরি হবে। সবকিছু আপনার ব্রাউজারেই হয়, কোনো তথ্য কোথাও পাঠানো হয় না।</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="সেটিংস">
+      <div class="field">
+        <label for="text">লিংক বা টেক্সট</label>
+        <textarea id="text" placeholder="https://example.com"></textarea>
+        <p class="hint">ফোন নম্বরের জন্য <b>tel:+8801XXXXXXXXX</b>, ইমেইলের জন্য <b>mailto:name@example.com</b> লিখুন।</p>
+      </div>
+
+      <div class="row field">
+        <div>
+          <label for="size">সাইজ (পিক্সেল)</label>
+          <input id="size" type="number" min="128" max="2048" step="32" value="512">
+        </div>
+        <div>
+          <label for="ecc">ভুল সংশোধন ক্ষমতা</label>
+          <select id="ecc">
+            <option value="L">কম (L)</option>
+            <option value="M" selected>মাঝারি (M)</option>
+            <option value="Q">বেশি (Q)</option>
+            <option value="H">সর্বোচ্চ (H)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="colors field">
+        <div>
+          <label for="fg">QR এর রং</label>
+          <input id="fg" type="color" value="#000000">
+        </div>
+        <div>
+          <label for="bg">ব্যাকগ্রাউন্ডের রং</label>
+          <input id="bg" type="color" value="#ffffff">
+        </div>
+      </div>
+      <p class="hint">স্ক্যান নির্ভরযোগ্য রাখতে গাঢ় রংের QR আর হালকা ব্যাকগ্রাউন্ড ব্যবহার করুন।</p>
+    </section>
+
+    <aside class="panel preview" aria-label="প্রিভিউ">
+      <div class="qrbox" id="qrbox">
+        <div class="empty" id="empty">লিংক বা টেক্সট লিখলে এখানে QR কোড দেখা যাবে।</div>
+        <canvas id="canvas" hidden></canvas>
+      </div>
+      <div class="actions">
+        <button id="dlPng" disabled>PNG ডাউনলোড</button>
+        <button id="dlSvg" class="alt" disabled>SVG ডাউনলোড</button>
+        <button id="copy" class="alt" disabled style="grid-column:1/-1">ছবি কপি করুন</button>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+    </aside>
+  </div>
+
+  <section class="faq">
+    <h2>সচরাচর জিজ্ঞাসা</h2>
+    <h3>QR কোড কি মেয়াদ শেষ হয়ে যায়?</h3>
+    <p>না। এখানে বানানো QR কোড সরাসরি আপনার লেখাটি ধারণ করে, তাই কখনো মেয়াদ শেষ হয় না।</p>
+    <h3>বাংলা লেখা ব্যবহার করা যাবে?</h3>
+    <p>হ্যাঁ, বাংলাসহ যেকোনো ভাষার লেখা সাপোর্ট করে। তবে লেখা বড় হলে QR কোড ঘন হয়, তাই ছোট রাখা ভালো।</p>
+    <h3>ভুল সংশোধন ক্ষমতা কী?</h3>
+    <p>QR কোডের কিছু অংশ নষ্ট বা ঢাকা পড়লেও স্ক্যান করা যাবে কিনা তা এটি ঠিক করে। বেশি ক্ষমতা দিলে কোড আরও ঘন হয়।</p>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var textEl=$("text"), sizeEl=$("size"), eccEl=$("ecc"), fgEl=$("fg"), bgEl=$("bg");
+  var canvas=$("canvas"), empty=$("empty"), statusEl=$("status");
+  var dlPng=$("dlPng"), dlSvg=$("dlSvg"), copyBtn=$("copy");
+  var QUIET = 4, current = null;
+
+  if (window.qrcode) { qrcode.stringToBytes = qrcode.stringToBytesFuncs["UTF-8"]; }
+
+  function say(msg){ statusEl.textContent = msg; }
+  function setButtons(on){ dlPng.disabled = dlSvg.disabled = copyBtn.disabled = !on; }
+
+  function build(){
+    var text = textEl.value.trim();
+    if (!text) { current = null; canvas.hidden = true; empty.hidden = false; setButtons(false); say(""); return; }
+    if (!window.qrcode) { say("QR লাইব্রেরি লোড হয়নি। ইন্টারনেট সংযোগ দেখে পেজ রিফ্রেশ করুন."); return; }
+    var qr;
+    try {
+      qr = qrcode(0, eccEl.value);
+      qr.addData(text);
+      qr.make();
+    } catch (e) {
+      current = null; canvas.hidden = true; empty.hidden = false; setButtons(false);
+      say("লেখাটি এই QR কোডে ধরানো যাচ্ছে না। লেখা ছোট করুন বা ভুল সংশোধন ক্ষমতা কমান।");
+      return;
+    }
+    var n = qr.getModuleCount();
+    var size = Math.min(2048, Math.max(128, parseInt(sizeEl.value, 10) || 512));
+    var cell = Math.max(1, Math.floor(size / (n + QUIET * 2)));
+    var px = cell * (n + QUIET * 2);
+    canvas.width = px; canvas.height = px;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = bgEl.value; ctx.fillRect(0, 0, px, px);
+    ctx.fillStyle = fgEl.value;
+    for (var r = 0; r < n; r++)
+      for (var c = 0; c < n; c++)
+        if (qr.isDark(r, c)) ctx.fillRect((c + QUIET) * cell, (r + QUIET) * cell, cell, cell);
+    current = { qr: qr, n: n };
+    canvas.hidden = false; empty.hidden = true; setButtons(true);
+    say(px + " × " + px + " পিক্সেল");
+  }
+
+  function save(blob, name){
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  dlPng.onclick = function(){
+    canvas.toBlob(function(b){ save(b, "qr-code.png"); say("PNG ডাউনলোড হয়েছে।"); }, "image/png");
+  };
+
+  dlSvg.onclick = function(){
+    if (!current) return;
+    var n = current.n, total = n + QUIET * 2, d = "";
+    for (var r = 0; r < n; r++)
+      for (var c = 0; c < n; c++)
+        if (current.qr.isDark(r, c)) d += "M" + (c + QUIET) + "," + (r + QUIET) + "h1v1h-1z";
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + total + " " + total +
+      '" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="' + bgEl.value +
+      '"/><path fill="' + fgEl.value + '" d="' + d + '"/></svg>';
+    save(new Blob([svg], { type: "image/svg+xml" }), "qr-code.svg");
+    say("SVG ডাউনলোড হয়েছে।");
+  };
+
+  copyBtn.onclick = function(){
+    if (!navigator.clipboard || !window.ClipboardItem) { say("এই ব্রাউজারে কপি সাপোর্ট নেই। PNG ডাউনলোড করুন।"); return; }
+    canvas.toBlob(function(b){
+      navigator.clipboard.write([new ClipboardItem({ "image/png": b })])
+        .then(function(){ say("ছবি কপি হয়েছে।"); })
+        .catch(function(){ say("কপি করা যায়নি। PNG ডাউনলোড করুন।"); });
+    }, "image/png");
+  };
+
+  [textEl, sizeEl, eccEl, fgEl, bgEl].forEach(function(el){
+    el.addEventListener("input", build);
+    el.addEventListener("change", build);
+  });
+  build();
+})();
+</script>
+</body>
+</html>
